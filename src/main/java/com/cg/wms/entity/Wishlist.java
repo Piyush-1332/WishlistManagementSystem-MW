@@ -27,6 +27,16 @@ public class Wishlist {
 	int productCategory;
 	@Column(name = "product_name", nullable = false)
 	String productName;
+	@Column(name="retailer_id",nullable = false)
+	String retailerId;
+
+	public String getRetailerId() {
+		return retailerId;
+	}
+
+	public void setRetailerId(String retailerId) {
+		this.retailerId = retailerId;
+	}
 
 	public String getProductId() {
 		return productId;

@@ -20,13 +20,13 @@ public class WishlistServiceImpl implements WishlistService {
 	}
 
 	@Override
-	public List<Wishlist> findAll() {
-		return wishlistRepo.findAll();
+	public List<Wishlist> findAll(String retailerId) {
+		return wishlistRepo.findAll(retailerId);
 	}
 
 	@Override
-	public Wishlist findById(String theId) {
-		Optional<Wishlist> result = wishlistRepo.findById(theId);
+	public Wishlist findById(String theId,String retailerId) {
+		Optional<Wishlist> result = wishlistRepo.findById(theId,retailerId);
 		
 		Wishlist theWishlist = null;
 		
@@ -42,7 +42,7 @@ public class WishlistServiceImpl implements WishlistService {
 	}
 
 	@Override
-	public void deleteById(String theId) {
+	public void deleteById(String theId,String retailerId) {
 		wishlistRepo.deleteById(theId);
 		
 	}

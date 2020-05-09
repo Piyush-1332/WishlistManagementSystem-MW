@@ -24,11 +24,11 @@ public class WishlistController {
 	private WishlistService wishlistService;
 
 
-	// add mapping for GET /customers
-	@GetMapping("/wishlist")
-	public List<Wishlist> findAll() {
+	// add mapping for GET /wishlist
+	@GetMapping("/wishlist/{retailerId}")
+	public List<Wishlist> findAll(@PathVariable String retailerId) {
 
-		return wishlistService.findAll();
+		return wishlistService.findAll(retailerId);
 
 	}
 
@@ -40,9 +40,9 @@ public class WishlistController {
 		return theWishlist;
 	}
 
-	@DeleteMapping("/wishlist/{productId}")
-	public String deleteProductfromWishlist(@PathVariable String productId) {
-		Wishlist tempWishlist = wishlistService.findById(productId);
+	@DeleteMapping("/wishlist/{productId}/{retailerId}")
+	public String deleteProductfromWishlist(@PathVariable String productId,@PathVariable String retailerId) {
+		Wishlist tempWishlist = wishlistService.findById(productId,retailerId);
 
 		// throw exception if null
 
@@ -50,7 +50,7 @@ public class WishlistController {
 			throw new RuntimeException("Product id not found - " + productId);
 		}
 
-		wishlistService.deleteById(productId);
+		wishlistService.deleteById(productId,retailerId);
 		return "Deleted product from wishlist  id- " + productId;
 	}
 
